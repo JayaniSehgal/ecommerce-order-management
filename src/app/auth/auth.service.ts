@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs-compat';
+import { BehaviorSubject } from 'rxjs';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,7 +8,6 @@ import {
   onAuthStateChanged,
   User,
 } from 'firebase/auth';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({

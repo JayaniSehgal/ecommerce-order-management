@@ -1,1 +1,37 @@
-<a routerLink="/products" class="nav-link">Products</a>
+<nav class="navbar navbar-expand-lg navbar-dark-bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">E-Shop</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/order">Order</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/inventory">inventory</a>
+        </li>
+      </ul>
+      <span class="navbar-text me-3"
+        >Welcome, {{ (authService.currentUser$ | async)?.displayName }}</span
+      >
+      <button class="btn btn-outline-light" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
