@@ -1,2 +1,17 @@
-<h2>Welcome to Ecommerce Order Management App!</h2>
-<p>Browse products, manage your cart and track orders.</p>
+<div class="row mt-4" *ngIf="products.length">
+  <div class="col-md-4 mb-4" *ngFor="let product of products">
+    <div class="card">
+      <img
+        [src]="product.imageUrl"
+        class="card-img-top"
+        alt="{{ product.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text fw-bold">${{ product.price }}</p>
+        <button class="btn btn-primary">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
