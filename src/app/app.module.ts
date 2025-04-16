@@ -19,6 +19,8 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { InventoryComponent } from './admin/inventory/inventory.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { ProductListComponent } from './user/product-list/product-list.component';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ProductListComponent } from './user/product-list/product-list.component
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent],

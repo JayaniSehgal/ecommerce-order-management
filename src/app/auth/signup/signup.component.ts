@@ -24,7 +24,6 @@ export class SignupComponent {
     this.authService
       .signup(this.email, this.password)
       .then(() => {
-        // After a successful signup, redirect to profile page to collect extra details
         this.router.navigate(['/profile']);
       })
       .catch((error) => {

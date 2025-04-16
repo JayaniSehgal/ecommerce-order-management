@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {
-  getAuth,
+  Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -9,15 +9,16 @@ import {
   User,
 } from 'firebase/auth';
 import { Router } from '@angular/router';
+import { Auth as AngularFireAuth } from '@angular/fire/auth'; // this is the token provided by provideAuth
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  //tracking the current users
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
-  private auth = getAuth();
+
+  private auth: Auth = inject(AngularFireAuth); // ✅ use Angular inject() here
 
   constructor(private router: Router) {
     onAuthStateChanged(this.auth, (user) => {

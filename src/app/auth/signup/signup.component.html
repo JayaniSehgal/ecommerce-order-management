@@ -1,28 +1,40 @@
 <div class="signup-container">
   <h2>Sign Up</h2>
-  <form (submit)="onSignup(); $event.preventDefault()">
+  <form (ngSubmit)="onSignup()" #signupForm="ngForm">
     <div>
       <input
         type="email"
+        name="email"
         [(ngModel)]="email"
         placeholder="Email"
-        name="email"
-        required
-      />
-      <input
-        type="password"
-        [(ngModel)]="password"
-        placeholder="Password"
-        name="password"
-        required
-      />
-      <input
-        type="password"
-        [(ngModel)]="password"
-        placeholder="Password"
-        name="password"
         required
       />
     </div>
+    <div>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <div>
+      <input
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        placeholder="Confirm Password"
+        required
+      />
+    </div>
+    <div>
+      <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+    </div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   </form>
+  <p>
+    Already have an account?
+    <a routerLink="/login">Login here</a>
+  </p>
 </div>

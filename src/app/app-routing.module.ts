@@ -12,10 +12,10 @@ import { ProductListComponent } from './user/product-list/product-list.component
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OdersComponent },
   { path: 'admin/inventory', component: InventoryComponent },
