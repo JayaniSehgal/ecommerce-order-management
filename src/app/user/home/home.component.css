@@ -1,0 +1,9 @@
+.home {
+  padding: 30px;
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
