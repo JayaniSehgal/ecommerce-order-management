@@ -34,6 +34,10 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
+  get isLoggedIn(): boolean {
+    return !!this.currentUserSubject.value;
+  }
+
   logout(): Promise<void> {
     return signOut(this.auth).then(() => {
       this.router.navigate(['/login']);

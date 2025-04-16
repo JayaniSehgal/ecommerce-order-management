@@ -1,28 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  email = '';
-  password = '';
-  errorMessage = '';
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
-  onLogin() {
-    this.authService
-      .login(this.email, this.password)
-      .then(() => {
-        this.router.navigate(['/home']);
-      })
-      .catch((error) => {
-        console.error('Login error:', error);
-        this.errorMessage = error.message;
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  onLogin(): void {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).catch((error) => {
+        console.error('Login failed:', error.message);
+        // You can show a toast or error message here
       });
+    }
   }
 }

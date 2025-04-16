@@ -1,34 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
-export class SignupComponent {
-  email = '';
-  password = '';
-  confirmPassword = '';
-  errorMessage = '';
+export class SignupComponent implements OnInit {
+  signupForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.signupForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   onSignup() {
-    if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Passwords do not match!';
-      return;
-    }
-
-    this.authService
-      .signup(this.email, this.password)
-      .then(() => {
-        this.router.navigate(['/profile']);
-      })
-      .catch((error) => {
-        console.error('Signup error:', error);
-        this.errorMessage = error.message;
+    if (this.signupForm.valid) {
+      const { email, password } = this.signupForm.value;
+      this.authService.login(email, password).catch((error) => {
+        console.error('Login failed:', error.message);
       });
+    }
   }
 }
