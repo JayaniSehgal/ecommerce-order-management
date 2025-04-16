@@ -18,6 +18,7 @@ import { OdersComponent } from './user/oders/oders.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { InventoryComponent } from './admin/inventory/inventory.component';
 import { OrdersComponent } from './admin/orders/orders.component';
+import { ProductListComponent } from './user/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { OrdersComponent } from './admin/orders/orders.component';
     OrdersComponent,
     InventoryComponent,
     ProfileComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,

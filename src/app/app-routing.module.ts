@@ -8,9 +8,10 @@ import { CartComponent } from './user/cart/cart.component';
 import { OdersComponent } from './user/oders/oders.component';
 import { InventoryComponent } from './admin/inventory/inventory.component';
 import { OrdersComponent } from './admin/orders/orders.component';
+import { ProductListComponent } from './user/product-list/product-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'orders', component: OdersComponent },
   { path: 'admin/inventory', component: InventoryComponent },
   { path: 'admin/orders', component: OrdersComponent },
-  // Add more routes as needed
+  { path: 'products', component: ProductListComponent },
 ];
 
 @NgModule({
